@@ -5,6 +5,6 @@ const express = require('express'),
 
 app.use(express.json());
 
-app.get(`api/get-users`, userController.getUsers);
+app.get(`/api/get-users`, userController.getUsers);
 
 app.listen(port, () =>  console.log(`Server is listening on port ${port}`));
