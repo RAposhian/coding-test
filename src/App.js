@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [users, setUsers] = useState({});
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     getUsers()
@@ -11,7 +11,7 @@ function App() {
   
   const getUsers = () => {
     axios.get(`/api/get-users`)
-        .then(response => setUsers(response.data.results[0]))
+        .then(response => setUsers(response.data))
         .catch(error => console.log(error))
   };
 
@@ -20,8 +20,20 @@ function App() {
 
   return (
     <div className="App">
-      {/* TODO figure out how to display the data correctly */}
-      {(users !== {}) ? <p>{users.gender}</p> : <p>No users</p>}
+      {(users)
+      ? 
+        <div>{users.map((e, i) => {
+          return (
+            <div key={i}>
+              <div>{e.name.title + ' ' + e.name.first + ' ' + e.name.last}</div>
+              <div>{e.email}</div>
+              <div>{e.location.city + '/' + e.location.country}</div>
+            </div>
+          );
+        })}</div>
+      : 
+        <div>No users to display</div>
+      }
     </div>
   );
 }
