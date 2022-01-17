@@ -1,5 +1,6 @@
 import './App.css';
 import axios from 'axios';
+import ListUser from './Components/ListUser';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -24,11 +25,7 @@ function App() {
       ? 
         <div>{users.map((e, i) => {
           return (
-            <div key={i}>
-              <div>{e.name.title + ' ' + e.name.first + ' ' + e.name.last}</div>
-              <div>{e.email}</div>
-              <div>{e.location.city + '/' + e.location.country}</div>
-            </div>
+            <ListUser key={i} person={e} />
           );
         })}</div>
       : 
