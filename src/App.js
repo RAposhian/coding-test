@@ -1,7 +1,14 @@
-import './App.css';
+import styled from 'styled-components';
 import axios from 'axios';
-import ListUser from './Components/ListUser';
+import ListUser from './Components/ListUser/ListUser';
 import { useEffect, useState } from 'react';
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  flex-direction: column;
+`
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -23,11 +30,11 @@ function App() {
     <div className="App">
       {(users)
       ? 
-        <div>{users.map((e, i) => {
+        <ListContainer>{users.map((e, i) => {
           return (
             <ListUser key={i} person={e} />
           );
-        })}</div>
+        })}</ListContainer>
       : 
         <div>No users to display</div>
       }
