@@ -24,8 +24,6 @@ const Landing = props => {
   };
 
 
- console.log(users)
-
   return (
     <div>
       {(users[0])
